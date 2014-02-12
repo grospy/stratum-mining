@@ -24,21 +24,21 @@ def setup(on_startup):
     from lib.block_template import BlockTemplate
     from lib.coinbaser import SimpleCoinbaser
 
-    bitcoin_rpc = BitcoinRPC(settings.BITCOIN_TRUSTED_HOST,
-                             settings.BITCOIN_TRUSTED_PORT,
-                             settings.BITCOIN_TRUSTED_USER,
-                             settings.BITCOIN_TRUSTED_PASSWORD)
+    bitcoin_rpc = BitcoinRPC(settings.NOVACOIN_TRUSTED_HOST,
+                             settings.NOVACOIN_TRUSTED_PORT,
+                             settings.NOVACOIN_TRUSTED_USER,
+                             settings.NOVACOIN_TRUSTED_PASSWORD)
 
     import stratum.logger
     log = stratum.logger.get_logger('mining')
 
-    log.info('Waiting for bitcoin RPC...')
+    log.info('Waiting for novacoin RPC...')
 
     while True:
         try:
             result = (yield bitcoin_rpc.getblocktemplate())
             if isinstance(result, dict):
-                log.info('Response from bitcoin RPC OK')
+                log.info('Response from novacoin RPC OK')
                 break
         except:
             time.sleep(1)

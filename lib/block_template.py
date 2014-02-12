@@ -14,7 +14,7 @@ from stratum import settings
 class BlockTemplate(halfnode.CBlock):
     '''Template is used for generating new jobs for clients.
     Let's iterate extranonce1, extranonce2, ntime and nonce
-    to find out valid bitcoin block!'''
+    to find out valid novacoin block!'''
 
     coinbase_transaction_class = CoinbaseTransaction
 
@@ -48,7 +48,7 @@ class BlockTemplate(halfnode.CBlock):
         mt = merkletree.MerkleTree(txhashes)
 
         coinbase = self.coinbase_transaction_class(self.timestamper, self.coinbaser, data['coinbasevalue'],
-                        data['coinbaseaux']['flags'], data['height'], settings.COINBASE_EXTRAS)
+                        data['coinbaseaux']['flags'], data['height'], settings.COINBASE_EXTRAS, data['curtime'])
 
         self.height = data['height']
         self.nVersion = data['version']

@@ -44,12 +44,12 @@ LISTEN_WS_TRANSPORT = None
 # Port used for secure WebSocket, 'None' for disabling WSS
 LISTEN_WSS_TRANSPORT = None
 
-# Hostname and credentials for one trusted Bitcoin node ("Satoshi's client").
-# Stratum uses both P2P port (which is 8333 already) and RPC port
-BITCOIN_TRUSTED_HOST = 'localhost'
-BITCOIN_TRUSTED_PORT = 8332
-BITCOIN_TRUSTED_USER = 'user'
-BITCOIN_TRUSTED_PASSWORD = 'somepassword'
+# Hostname and credentials for one trusted Novacoin node.
+# Stratum uses both P2P port (which is 7777 already) and RPC port
+NOVACOIN_TRUSTED_HOST = 'localhost'
+NOVACOIN_TRUSTED_PORT = 8344
+NOVACOIN_TRUSTED_USER = 'user'
+NOVACOIN_TRUSTED_PASSWORD = 'password'
 
 # Use "echo -n '<yourpassword>' | sha256sum | cut -f1 -d' ' "
 # for calculating SHA256 of your preferred password
@@ -68,7 +68,7 @@ DATABASE_PASSWORD = '**empty**'
 
 # Pool related settings
 INSTANCE_ID = 31
-CENTRAL_WALLET = 'set_valid_addresss_in_config!'
+CENTRAL_WALLET = '4WpFe4iTc8zC3UHAzdQX6w9BcRuXFxvPqm' # local novacoin address where money goes
 PREVHASH_REFRESH_INTERVAL = 5 # in sec
 MERKLE_REFRESH_INTERVAL = 60 # How often check memorypool
 COINBASE_EXTRAS = '/stratum/'

@@ -137,7 +137,7 @@ class TemplateRegistry(object):
 
     def diff_to_target(self, difficulty):
         '''Converts difficulty to target'''
-        diff1 = 0x00000000ffff0000000000000000000000000000000000000000000000000000
+        diff1 = 0x0000ffff00000000000000000000000000000000000000000000000000000000 
         return diff1 / difficulty
 
     def get_job(self, job_id):
@@ -165,7 +165,7 @@ class TemplateRegistry(object):
                      difficulty):
         '''Check parameters and finalize block template. If it leads
            to valid block candidate, asynchronously submits the block
-           back to the bitcoin network.
+           back to the novacoin network.
 
             - extranonce1_bin is binary. No checks performed, it should be from session data
             - job_id, extranonce2, ntime, nonce - in hex form sent by the client
@@ -219,7 +219,7 @@ class TemplateRegistry(object):
         header_bin = job.serialize_header(merkle_root_int, ntime_bin, nonce_bin)
 
         # 4. Reverse header and compare it with target of the user
-        hash_bin = util.doublesha(''.join([ header_bin[i*4:i*4+4][::-1] for i in range(0, 20) ]))
+        hash_bin = util.scrypt(''.join([ header_bin[i*4:i*4+4][::-1] for i in range(0, 20) ]))
         hash_int = util.uint256_from_str(hash_bin)
         block_hash_hex = "%064x" % hash_int
         header_hex = binascii.hexlify(header_bin)

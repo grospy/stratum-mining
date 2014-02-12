@@ -1,5 +1,5 @@
 '''
-    Implements simple interface to bitcoind's RPC.
+    Implements simple interface to novacoind's RPC.
 '''
 
 import simplejson as json

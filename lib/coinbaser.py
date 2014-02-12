@@ -7,7 +7,7 @@ log = stratum.logger.get_logger('coinbaser')
 # TODO: Add on_* hooks in the app
 
 class SimpleCoinbaser(object):
-    '''This very simple coinbaser uses constant bitcoin address
+    '''This very simple coinbaser uses constant novacoin address
     for all generated blocks.'''
 
     def __init__(self, bitcoin_rpc, address):
@@ -38,7 +38,7 @@ class SimpleCoinbaser(object):
             log.error("Coinbase address '%s' is NOT valid!" % self.address)
 
     def _failure(self, failure):
-        log.error("Cannot validate Bitcoin address '%s'" % self.address)
+        log.error("Cannot validate Novacoin address '%s'" % self.address)
         raise
 
     #def on_new_block(self):
@@ -49,7 +49,7 @@ class SimpleCoinbaser(object):
 
     def get_script_pubkey(self):
         if not self.is_valid:
-            # Try again, maybe bitcoind was down?
+            # Try again, maybe novacoind was down?
             self._validate()
             raise Exception("Coinbase address is not validated!")
         return util.script_to_address(self.address)
