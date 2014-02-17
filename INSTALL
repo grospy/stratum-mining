@@ -28,7 +28,7 @@ Step 4: Run the pool
 You can now set the URL on your stratum proxy (or miner that supports stratum) to:
 http://YOURHOSTNAME:3333
 
-Novacoindd blocknotify Setup
+Novacoind blocknotify Setup
 =========================
 Although scary (for me), this is actually pretty easy.
 
@@ -54,41 +54,6 @@ Step 4: Adjust pool polling
 		PREVHASH_REFRESH_INTERVAL = to the same value as MERKLE_REFRESH_INTERVAL
 	restart the pool
 
-Database Setup
-=========================
-Table Creation: Tables are auto-created if they don't exist
-
-None:
-Well, this doesn't do anything, so there is nothing to set up
-
-Sqlite:
-THIS IS THE DEFAULT!
-Just set the file path in the config file (or keep the default.)
-Support for sqlite3 is built into recent python versions.
-A couple notes for Sqlite:
-	- Sqlite and threading/concurancy just doesn't work right for that reason it is disabled.
-	- Since threading is disabled, The server will "pause" when archiving happens, this will affect
-		your miners. However this will not happen often (24 hours after finding a share)
-
-Postgresql:
-1: Set up your parameters in the config file.
-2: Install the postgresql libraries in your os:
-	Redhat and the like:
-		yum install postgresql-libs postgresql-devel
-	Ubuntu and the like:
-		apt-get install postgresql postgresql-devel
-3: Install the python bindings
-	easy_install psycopg2
-
-Mysql:
-1: Set up your parameters in the config file.
-2: Install the postgresql libraries in your os:
-	Redhat and the like:
-		yum install mysql mysql-devel
-	Ubuntu and the like:
-		apt-get install mysql mysql-devel
-3: Install the python bindings
-	easy_install mysql-python
 
 Problems????
 =========================
