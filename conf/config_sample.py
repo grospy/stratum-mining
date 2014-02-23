@@ -1,6 +1,6 @@
 '''
 This is example configuration for Stratum server.
-Please rename it to settings.py and fill correct values.
+Please rename it to config.py and fill correct values.
 '''
 
 # ******************** GENERAL SETTINGS ***************
@@ -58,17 +58,45 @@ ADMIN_PASSWORD_SHA256 = None
 
 IRC_NICK = None
 
-'''
-DATABASE_DRIVER = 'MySQLdb'
-DATABASE_HOST = 'localhost'
-DATABASE_DBNAME = 'pooldb'
-DATABASE_USER = 'pooldb'
-DATABASE_PASSWORD = '**empty**'
-'''
+
+DATABASE_DRIVER = 'mysql'
+DATABASE_EXTEND = False         # False = pushpool db layout, True = pushpool + extra columns
+DB_MYSQL_HOST = 'localhost'
+DB_MYSQL_DBNAME = 'pooldb'
+DB_MYSQL_USER = 'pooldb'
+DB_MYSQL_PASS = '**empty**'
+
 
 # Pool related settings
 INSTANCE_ID = 31
 CENTRAL_WALLET = '4WpFe4iTc8zC3UHAzdQX6w9BcRuXFxvPqm' # local novacoin address where money goes
 PREVHASH_REFRESH_INTERVAL = 5 # in sec
 MERKLE_REFRESH_INTERVAL = 60 # How often check memorypool
-COINBASE_EXTRAS = '/stratum/'
+COINBASE_EXTRAS = ''
+
+# ******************** Pool Difficulty Settings *********************
+#  Again, Don't change unless you know what this is for.
+
+# Pool Target (Base Difficulty)
+POOL_TARGET = 32                # Pool-wide difficulty target int >= 1
+
+# Variable Difficulty Enable
+VARIABLE_DIFF = False           # Master variable difficulty enable
+
+# Variable diff tuning variables
+VDIFF_TARGET = 15               # Target time per share (i.e. try to get 1 share per this many seconds)
+VDIFF_RETARGET = 120            # Check to see if we should retarget this often
+VDIFF_VARIANCE_PERCENT = 50     # Allow average time to very this % from target without retarget
+
+# ******************** Adv. DB Settings *********************
+#  Don't change these unless you know what you are doing
+
+DB_LOADER_CHECKTIME = 15        # How often we check to see if we should run the loader
+DB_LOADER_REC_MIN = 10          # Min Records before the bulk loader fires
+DB_LOADER_REC_MAX = 20          # Max Records the bulk loader will commit at a time
+
+DB_STATS_AVG_TIME = 30          # When using the DATABASE_EXTEND option, average speed over X sec
+                                #       Note: this is also how often it updates
+DB_USERCACHE_TIME = 600         # How long the usercache is good for before we refresh
+
+USERS_AUTOADD = False
