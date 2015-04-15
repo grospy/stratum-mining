@@ -194,7 +194,7 @@ class TemplateRegistry(object):
             raise SubmitException("Incorrect size of nonce. Expected 8 chars")
 
         # normalize the case to prevent duplication of valid shares by the client
-        ntime = ntile.lower()
+        ntime = ntime.lower()
         nonce = nonce.lower()
         extranonce2 = extranonce2.lower()
 
